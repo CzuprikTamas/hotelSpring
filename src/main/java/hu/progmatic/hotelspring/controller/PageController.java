@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Map;
+
 @Controller
 @AllArgsConstructor
 public class PageController {
@@ -35,8 +37,15 @@ public class PageController {
         return "guests";
     }
 
+//    @GetMapping("/statistics")
+//    public String statisticsPage() {
+//        return "statistics";
+//    }
+
     @GetMapping("/statistics")
-    public String statisticsPage() {
+    public String statisticsPage(Model model) {
+        Map<Integer, Integer> saturationMap = reservationsService.getSaturation();
+        model.addAttribute("saturationMap", saturationMap);
         return "statistics";
     }
 
@@ -54,7 +63,7 @@ public class PageController {
     @PostMapping("/add-guest")
     public String addUSer(@ModelAttribute ("newGuest") Guests guests) {
         guestsService.createNewGuest(guests);
-        return "redirect:/guests";
+        return "redirect:/reg";
     }
 
 }
