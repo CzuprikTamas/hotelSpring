@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Guests</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Hotel Hell</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/home">Home</a>
+                <a class="nav-link" href="/reservation">Reservation</a>
+                <a class="nav-link" href="/rooms">Rooms</a>
+                <a class="nav-link" href="/statistics">Statistics</a>
+                <a class="nav-link active" aria-current="page" href="/guests">Guests</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <main class="container py-3">
+        <h1>Guest List</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Place Of Birth</th>
+                <th>Date Of Birth</th>
+                <th>Personal ID</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="currentGuest : ${guestList}">
+                <td th:text="${currentGuest.getGuestId()}">1</td>
+                <td th:text="${currentGuest.getTitle()}">Mr</td>
+                <td th:text="${currentGuest.getLastName()}">Cena</td>
+                <td th:text="${currentGuest.getFirstName()}">Jhon</td>
+                <td th:text="${currentGuest.getPlaceOfBirth()}">New York</td>
+                <td th:text="${currentGuest.getDateOfBirth()}">1978-05-16</td>
+                <td th:text="${currentGuest.getPersonalId()}">123456789</td>
+                <td th:text="${currentGuest.getEmail()}">Jhon@Cena.hu</td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/add-guest" class="btn btn-primary">Add Guest</a>
+        <a href="/modify-guest" class="btn btn-primary">Modify Guest</a>
+
+    </main>
+
+</div>
+</body>
+</html>
