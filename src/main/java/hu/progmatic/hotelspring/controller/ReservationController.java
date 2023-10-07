@@ -16,34 +16,31 @@ import java.util.Map;
 public class ReservationController {
     private final ReservationService reservationService;
 
+    @Autowired
     public ReservationController(ReservationService reservationService) {
         this.reservationService = reservationService;
-    }
-
-    @GetMapping
-    public Reservations createNewReservation() {
-        return reservationService.createNewReservation(new Reservations());
     }
 
     @DeleteMapping
     public void deleteReservation(@PathVariable Integer id) {
         reservationService.deleteReservation(id);
     }
+
     @GetMapping("/statistics")
     public String statisticsPage(Model model) {
         Map<Integer, Integer> saturationMap = reservationService.getSaturation();
         model.addAttribute("saturationMap", saturationMap);
         return "statistics";
     }
+
     @PostMapping("/add-reservation")
     public String addReservation(@ModelAttribute ("newreservation") Reservations reservations) {
         reservationService.createNewReservation(reservations);
         return "redirect:/reservation";
     }
-    @GetMapping("/reservations")
+    @GetMapping("/reservation")
     public String reservationPage(Model model) {
-        model.addAttribute("reservationList",
-                reservationService.getAllReservations());
+        model.addAttribute("reservationList", reservationService.getAllReservations());
         return "reservation";
     }
 }

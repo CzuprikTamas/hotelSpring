@@ -2,6 +2,7 @@ package hu.progmatic.hotelspring.controller;
 
 
 import hu.progmatic.hotelspring.model.Guests;
+import hu.progmatic.hotelspring.model.Reservations;
 import hu.progmatic.hotelspring.service.GuestsService;
 import hu.progmatic.hotelspring.service.ReservationService;
 import hu.progmatic.hotelspring.service.RoomsService;
@@ -23,11 +24,6 @@ public class PageController {
         return "home";
     }
 
-    @GetMapping("/reservation")
-    public String reservationPage() {
-        return "reservation";
-    }
-
     @GetMapping("/rooms")
     public String roomsPage() {
         return "rooms";
@@ -42,5 +38,10 @@ public class PageController {
     public String modifyUser(Model model) {
         model.addAttribute("newGuest", new Guests());
         return "modifyguest";
+    }
+    @GetMapping("/add-reservation")
+    public String addReservationPage(Model model) {
+        model.addAttribute("newreservation", new Reservations());
+        return "addreservation";
     }
 }
