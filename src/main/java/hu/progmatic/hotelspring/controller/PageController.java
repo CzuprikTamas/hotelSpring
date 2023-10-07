@@ -1,6 +1,7 @@
 package hu.progmatic.hotelspring.controller;
 
 import hu.progmatic.hotelspring.model.Guests;
+import hu.progmatic.hotelspring.model.Reservations;
 import hu.progmatic.hotelspring.service.GuestsService;
 import hu.progmatic.hotelspring.service.ReservationsService;
 import hu.progmatic.hotelspring.service.RoomsService;
@@ -25,29 +26,6 @@ public class PageController {
         return "home";
     }
 
-    @GetMapping("/reservation")
-    public String reservationPage() {
-        return "reservation";
-    }
-
-    @GetMapping("/guests")
-    public String guestsPage(Model model) {
-        model.addAttribute("guestList",
-                guestsService.getAllGuests());
-        return "guests";
-    }
-
-//    @GetMapping("/statistics")
-//    public String statisticsPage() {
-//        return "statistics";
-//    }
-
-    @GetMapping("/statistics")
-    public String statisticsPage(Model model) {
-        Map<Integer, Integer> saturationMap = reservationsService.getSaturation();
-        model.addAttribute("saturationMap", saturationMap);
-        return "statistics";
-    }
 
     @GetMapping("/rooms")
     public String roomPage() {
@@ -60,10 +38,21 @@ public class PageController {
         return "addGuest";
     }
 
-    @PostMapping("/add-guest")
-    public String addUSer(@ModelAttribute ("newGuest") Guests guests) {
-        guestsService.createNewGuest(guests);
-        return "redirect:/reg";
+    @GetMapping("/modify-guest")
+    public String modifyUser(Model model) {
+        model.addAttribute("newGuest", new Guests());
+        return "modifyGuest";
+    }
+
+    @GetMapping("/modify-reservation")
+    public String modifyReservation(Model model) {
+        model.addAttribute("newReservation", new Reservations());
+        return "modifyReservation";
+    }
+    @GetMapping("/add-reservation")
+    public String addReservationPage(Model model) {
+        model.addAttribute("newreservation", new Reservations());
+        return "addReservation";
     }
 
 }

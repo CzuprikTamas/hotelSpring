@@ -15,9 +15,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="/home">Home</a>
                 <a class="nav-link" href="/statistics">Statistics</a>
-                <a class="nav-link" href="/reservation">Reservation</a>
+                <a class="nav-link active" aria-current="page" href="/reservation">Reservation</a>
                 <a class="nav-link" href="/rooms">Rooms</a>
                 <a class="nav-link" href="/guests">Guests</a>
 
@@ -26,24 +26,42 @@
     </div>
 </nav>
 
+<div class="container py-5">
+    <header class="text-center">
+        <h1>Guests</h1>
+        <p>What We Have in Store</p>
+    </header>
 
-<!--<div class="container py-5">-->
-<!--    <header class="text-center">-->
-<!--        <h1>Book Dealers</h1>-->
-<!--        <p>We Are Addicted to Books</p>-->
-<!--    </header>-->
 
-<!--    <main class="container py-3">-->
+    <main class="container py-3">
+        <h1>Guest List</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Check-In Date</th>
+                <th>Check-Out Date</th>
+                <th>Number of Guests</th>
+                <th>Room Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="currentGuest : ${reservationList}">
+                <td th:text="${currentGuest.getReservationId()}">1</td>
+                <td th:text="${currentGuest.getCheckInDate()}">2000-10-10</td>
+                <td th:text="${currentGuest.getCheckOutDate()}">2000-10-12</td>
+                <td th:text="${currentGuest.getNumberOfGuests()}">3</td>
+                <td th:text="${currentGuest.getRoomsId()}">101</td>
 
-<!--        <p>-->
-<!--            Book Dealers is a passionate team of book enthusiasts who are dedicated to bringing you the best selection of books from various genres.-->
-<!--            Our mission is to inspire a love for reading and provide our customers with access to a wide range of literary treasures.-->
-<!--            We envision a world where everyone has easy access to knowledge, entertainment, and inspiration through the joy of reading.-->
-<!--            We strive to make quality books accessible to all, promoting lifelong learning and personal growth.-->
-<!--        </p>-->
+            </tr>
+            </tbody>
+        </table>
+        <a href="/add-reservation" class="btn btn-primary">Add Reservation</a>
+        <a href="/modify-reservation" class="btn btn-primary">Modify Reservation</a>
+        <a href="/delete-reservation" class="btn btn-primary">Delete Reservation</a>
+    </main>
 
-<!--    </main>-->
-<!--</div>-->
+</div>
 
 
 </body>

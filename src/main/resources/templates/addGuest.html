@@ -19,10 +19,6 @@
 
 <div class="container py-2">
     <form method="post" th:action="@{/add-guest}">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="id" placeholder="ID" th:field="*{newGuest.guestId}">
-            <label for="id">ID</label>
-        </div>
         <div class="form-floating">
             <input type="text" class="form-control" id="title" placeholder="Title" th:field="*{newGuest.title}">
             <label for="title">Title</label>
