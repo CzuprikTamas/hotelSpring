@@ -35,5 +35,16 @@ public class ReservationController {
         model.addAttribute("saturationMap", saturationMap);
         return "statistics";
     }
+    @PostMapping("/add-reservation")
+    public String addReservation(@ModelAttribute ("newreservation") Reservations reservations) {
+        reservationService.createNewReservation(reservations);
+        return "redirect:/reservation";
+    }
+    @GetMapping("/reservations")
+    public String reservationPage(Model model) {
+        model.addAttribute("reservationList",
+                reservationService.getAllReservations());
+        return "reservation";
+    }
 }
 
