@@ -34,7 +34,7 @@ public class ReservationController {
     }
 
     @PostMapping("/add-reservation")
-    public String addReservation(@ModelAttribute ("newreservation") Reservations reservations) {
+    public String addReservation(@ModelAttribute ("newReservation") Reservations reservations) {
         reservationService.createNewReservation(reservations);
         return "redirect:/reservation";
     }

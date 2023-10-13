@@ -1,0 +1,50 @@
+CREATE DATABASE hotel;
+USE hotel;
+
+CREATE TABLE rooms (
+    room_number INT PRIMARY KEY,
+    max_capacity INT,
+    nightly_rate INT,
+    has_jacuzzi BOOLEAN,
+    has_sauna BOOLEAN
+);
+
+CREATE TABLE guests (
+    guest_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(20),
+    last_name VARCHAR(50),
+    first_name VARCHAR(50),
+    place_of_birth VARCHAR(100),
+    date_of_birth DATE,
+    personal_id VARCHAR(20),
+    email VARCHAR(100) UNIQUE
+);
+
+CREATE TABLE reservations (
+    reservation_id INT AUTO_INCREMENT PRIMARY KEY,
+    guest_id INT,
+    room_number INT,
+    check_in_date DATE,
+    check_out_date DATE,
+    number_of_guests INT,
+    FOREIGN KEY (guest_id) REFERENCES guests(guest_id),
+    FOREIGN KEY (room_number) REFERENCES rooms(room_number)
+);
+
+INSERT INTO rooms (room_number, max_capacity, nightly_rate, has_jacuzzi, has_sauna)
+VALUES
+    (101, 2, 150, 1, 0),
+    (102, 4, 200, 0, 1),
+    (103, 2, 120, 0, 0);
+
+INSERT INTO guests (title, last_name, first_name, place_of_birth, date_of_birth, personal_id, email)
+VALUES
+    ('Mr', 'Smith', 'John', 'New York', '1980-05-15', '123456789', 'john.smith@example.com'),
+    ('Ms', 'Johnson', 'Mary', 'Los Angeles', '1990-08-22', '987654321', 'mary.johnson@example.com'),
+    ('Mr', 'Doe', 'Richard', 'Chicago', '1975-03-10', '456789123', 'richard.doe@example.com');
+
+INSERT INTO reservations (guest_id, room_number, check_in_date, check_out_date,number_of_guests)
+VALUES
+    (1, 101, '2023-11-01', '2023-11-05',2),
+    (2, 102, '2023-12-10', '2023-12-15',4),
+    (3, 103, '2023-11-20', '2023-11-25',2);

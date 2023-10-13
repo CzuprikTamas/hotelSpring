@@ -16,15 +16,16 @@ import java.util.List;
 @Entity
 public class Reservations {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reservationId;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private Integer numberOfGuests;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name="guest_id")
     @JsonBackReference
     private Guests guestReservation;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name="room_number")
     @JsonBackReference
     private Rooms roomsReservation;

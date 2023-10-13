@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@AllArgsConstructor
 @Controller
+@AllArgsConstructor
 public class PageController {
     private final GuestsService guestsService;
     private final ReservationService reservationService;
@@ -39,9 +39,14 @@ public class PageController {
         model.addAttribute("newGuest", new Guests());
         return "modifyguest";
     }
+    @GetMapping("/modify-reservation")
+    public String modifyReservation(Model model) {
+        model.addAttribute("newReservation", new Reservations());
+        return "modify_reservation";
+    }
     @GetMapping("/add-reservation")
     public String addReservationPage(Model model) {
-        model.addAttribute("newreservation", new Reservations());
+        model.addAttribute("newReservation", new Reservations());
         return "addreservation";
     }
 }
